@@ -1,5 +1,5 @@
-type BookID = 1 | 2 | 3 | 4 | 5;
-type Amount = Number;
+type BookID = string;
+type Amount = number;
 type Basket = Record<BookID, Amount>;
 
 let basket: Basket;
@@ -25,11 +25,9 @@ export function setupBasket() {
 
  const calculateButton = document.querySelector<HTMLButtonElement>('#total');
 
- calculateButton.addEventListener('click', () => {
+ calculateButton && calculateButton.addEventListener('click', () => {
   console.table(basket)   
-})
-  
-  
+}) 
   };
 
-
+export {basket}
