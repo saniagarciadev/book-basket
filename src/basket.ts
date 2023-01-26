@@ -1,9 +1,20 @@
 export function setupBasket(element: HTMLButtonElement) {
-  let basket = 0
-  const setBasket = (count: number) => {
-    basket = count
-    element.innerHTML = `Number of books: ${basket}`
+    // type BookID = "1" | "2" | "3" | "4" | "5";
+    type BookID = 1 | 2 | 3 | 4 | 5;
+
+    type Amount = Number;
+ type BookOrder = Record<BookID, Amount>;
+
+ let basket: BookOrder;
+ 
+  const addToBasket = (order: BookID) => {
+ 
+    console.log("TEST order", order)
   }
-  element.addEventListener('click', () => setBasket(basket + 1))
-  setBasket(0)
+  const buttons = document.querySelectorAll("button");
+  buttons.forEach(btn => {
+    
+    btn.addEventListener('click', event => addToBasket(event.target.id))
+    
+  });
 }
