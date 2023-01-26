@@ -3,6 +3,7 @@ type Amount = number;
 type Basket = Record<BookID, Amount>;
 
 let basket: Basket;
+let total: number;
 
 export function setupBasket() {
    const addToBasket = (book: BookID) => {
@@ -10,9 +11,15 @@ export function setupBasket() {
     let amount = basket[book] ? basket[book] + 1 : 1;
 
     basket = {...basket, [book]: amount}
-    console.log("TEST basket", basket)
     return basket;
 }
+
+const getTotal = () => { 
+  if (!basket) return;
+  total = Object.values(basket).reduce(function(a, b){
+    return a + b * 8;
+}, 0);
+ }
 
   const bookButtons = document.querySelectorAll<HTMLButtonElement>('.book');
   
@@ -25,9 +32,7 @@ export function setupBasket() {
 
  const calculateButton = document.querySelector<HTMLButtonElement>('#total');
 
- calculateButton && calculateButton.addEventListener('click', () => {
-  console.table(basket)   
-}) 
-  };
+ calculateButton && calculateButton.addEventListener('click', getTotal)
+};
 
-export {basket}
+export {basket, total}

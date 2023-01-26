@@ -1,4 +1,4 @@
-import {setupBasket, basket} from "../src/basket"
+import {setupBasket, basket, total} from "../src/basket"
 
 describe('Book basket', () => {
     beforeEach(() => {
@@ -19,10 +19,6 @@ describe('Book basket', () => {
         `;
         setupBasket()
      })
-    //  afterEach(() => { 
-    //     basket = undefined
-        
-    //   })
     it('adds books to basket', () => { 
         const book1Button = document.querySelector<HTMLButtonElement>('#book-1');
         book1Button && book1Button.click()
@@ -33,11 +29,16 @@ describe('Book basket', () => {
         expect(basket["book-1"]).toEqual(2);
         expect(basket["book-5"]).toEqual(1);
 
-        console.table(basket)
      })
-    // it('removes books from basket');
-    it('adds prices to total', () => { 
-        
+    // TODO it('removes books from basket');
+    it.only('adds prices to total', () => { const book1Button = document.querySelector<HTMLButtonElement>('#book-1');
+    book1Button && book1Button.click()
+    book1Button && book1Button.click()
+    book1Button && book1Button.click()
+        const calculateButton = document.querySelector<HTMLButtonElement>('#total');
+        calculateButton && calculateButton.click()
+        expect(total).toEqual(24);
+
      })
     // it('calculates and discounts savings percentages');
     // it(`doesn't apply discount to duplicate books`);
