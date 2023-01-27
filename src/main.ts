@@ -13,7 +13,6 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <button id="4" class="book" type="button">Book 4</button>
       <button id="5" class="book" type="button">Book 5</button>
       </div>
-      <button id="total" type="button">Calculate total</button>
   </div>
 `
 
