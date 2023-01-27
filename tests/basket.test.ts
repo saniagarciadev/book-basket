@@ -53,6 +53,6 @@ describe('Book basket', () => {
         calculateButton && calculateButton.click()
         expect(total).toEqual(15.2);
     });
-    // it(`doesn't apply discount to duplicate books`);
+    // TODO it(`doesn't apply discount to duplicate books`);
     // TODO it(`accepts more than one discount bundle per basket`);
  })

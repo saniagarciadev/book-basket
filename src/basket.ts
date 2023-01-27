@@ -14,25 +14,25 @@ const discounts: { [num: number]: number } = {
 }
 
 export function setupBasket() {
-   const addToBasket = (book: BookID) => {
+  const addToBasket = (book: BookID) => {
     basket = {...basket}
     let amount = basket[book] ? basket[book] + 1 : 1;
     basket = {...basket, [book]: amount}
-    return basket;
-}
-
-const getTotal = () => { 
-  if (!basket) return;
-  total = Object.values(basket).reduce(function(a, b){
-    return a + b;
-  }, 0) * 8;
-  bundle = Object.keys(basket).length;
-  if (bundle > 1) {
-    const discount: number = bundle * 8 / 100 * discounts[bundle]
-    total -= discount;
+    console.table(basket)
   }
 
- }
+  const getTotal = () => { 
+    if (!basket) return;
+    total = Object.values(basket).reduce(function(a, b){
+      return a + b;
+    }, 0) * 8;
+    bundle = Object.keys(basket).length;
+    if (bundle > 1) {
+      const discount: number = bundle * 8 / 100 * discounts[bundle]
+      total -= discount;
+    }
+    console.log("Total: ", total)
+  }
 
   const bookButtons = document.querySelectorAll<HTMLButtonElement>('.book');
   
@@ -41,11 +41,11 @@ const getTotal = () => {
       const target = event.target as HTMLButtonElement;
       addToBasket(target.id)
     })
- })
+  })
 
- const calculateButton = document.querySelector<HTMLButtonElement>('#total');
+  const calculateButton = document.querySelector<HTMLButtonElement>('#total');
 
- calculateButton && calculateButton.addEventListener('click', () => getTotal())
+  calculateButton && calculateButton.addEventListener('click', () => getTotal())
 };
 
 export function clearBasket() {
